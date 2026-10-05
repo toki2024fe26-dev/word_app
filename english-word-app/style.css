@@ -1,0 +1,782 @@
+/* =========================
+   基本設定
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: "DotGothic16", sans-serif;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff7e8,
+      #f5f0ff,
+      #eafaff
+    );
+
+  color: #333;
+}
+
+
+/* =========================
+   アプリ本体
+========================= */
+
+.app {
+  width: 90%;
+  max-width: 720px;
+
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+
+
+/* =========================
+   ヘッダー
+========================= */
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin: 0;
+
+  font-size: 34px;
+  color: #ff6b9d;
+
+  text-shadow:
+    3px 3px 0 #fff,
+    5px 5px 0 #333;
+}
+
+header p {
+  margin-top: 15px;
+}
+
+
+/* =========================
+   カード
+========================= */
+
+.card {
+  background: #fff;
+
+  border: 3px solid #333;
+  border-radius: 18px;
+
+  padding: 25px;
+
+  margin-bottom: 25px;
+
+  box-shadow:
+    6px 6px 0 #333;
+}
+
+
+/* =========================
+   単語追加
+========================= */
+
+.add-section h2 {
+  margin-top: 0;
+}
+
+.add-section input {
+  display: block;
+
+  width: 100%;
+
+  padding: 14px 16px;
+
+  margin-bottom: 12px;
+
+  font-family: inherit;
+  font-size: 16px;
+
+  background: #fffaf0;
+
+  border: 3px solid #cfc5e8;
+  border-radius: 12px;
+
+  outline: none;
+}
+
+.add-section input:focus {
+  border-color: #56d9e8;
+
+  box-shadow:
+    0 0 0 3px rgba(86, 217, 232, 0.2);
+}
+
+#add-button {
+  width: 100%;
+
+  padding: 14px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+
+  background: #ffcf5c;
+
+  border: 3px solid #333;
+  border-radius: 12px;
+
+  box-shadow:
+    4px 4px 0 #333;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+#add-button:hover {
+  transform: translate(-2px, -2px);
+
+  box-shadow:
+    6px 6px 0 #333;
+}
+
+#add-button:active {
+  transform: translate(2px, 2px);
+
+  box-shadow:
+    2px 2px 0 #333;
+}
+
+#message {
+  min-height: 20px;
+
+  margin-bottom: 0;
+
+  text-align: center;
+}
+
+
+/* =========================
+   単語帳ボタン
+========================= */
+
+.book-button-section {
+  margin-bottom: 25px;
+}
+
+#word-book-button {
+  width: 100%;
+
+  padding: 16px;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: bold;
+
+  color: #6845a5;
+
+  background: #fff;
+
+  border: 3px solid #333;
+  border-radius: 14px;
+
+  box-shadow:
+    5px 5px 0 #333;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+#word-book-button:hover {
+  background: #f5f0ff;
+
+  transform: translate(-2px, -2px);
+
+  box-shadow:
+    7px 7px 0 #333;
+}
+
+#word-book-button:active {
+  transform: translate(2px, 2px);
+
+  box-shadow:
+    2px 2px 0 #333;
+}
+
+
+/* =========================
+   モーダル
+========================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(45, 35, 65, 0.65);
+
+  backdrop-filter: blur(4px);
+
+  animation: modalBackground 0.2s ease;
+}
+
+
+/* 閉じている状態 */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================
+   単語帳ウィンドウ
+========================= */
+
+.word-book-modal {
+  width: 100%;
+  max-width: 650px;
+
+  max-height: 85vh;
+
+  background: #fff;
+
+  border: 4px solid #333;
+  border-radius: 20px;
+
+  box-shadow:
+    10px 10px 0 #222;
+
+  overflow: hidden;
+
+  animation: modalOpen 0.25s ease;
+}
+
+
+/* =========================
+   モーダルヘッダー
+========================= */
+
+.modal-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffd6e5,
+      #e8dcff,
+      #d7f9ff
+    );
+
+  border-bottom: 3px solid #333;
+}
+
+.modal-header h2 {
+  margin: 0;
+
+  color: #6845a5;
+
+  font-size: 22px;
+}
+
+.modal-header p {
+  margin: 4px 0 0;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   閉じるボタン
+========================= */
+
+.close-button {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+
+  color: #333;
+
+  background: #fff;
+
+  border: 3px solid #333;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  box-shadow:
+    3px 3px 0 #333;
+
+  transition: 0.15s;
+}
+
+.close-button:hover {
+  color: #fff;
+
+  background: #ff6b9d;
+
+  transform: rotate(8deg);
+}
+
+.close-button:active {
+  transform: translate(2px, 2px);
+
+  box-shadow:
+    1px 1px 0 #333;
+}
+
+
+/* =========================
+   単語リスト
+========================= */
+
+.word-list {
+  max-height: calc(85vh - 100px);
+
+  overflow-y: auto;
+
+  padding: 18px;
+}
+
+
+/* スクロールバー */
+
+.word-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.word-list::-webkit-scrollbar-track {
+  background: #f1edfa;
+}
+
+.word-list::-webkit-scrollbar-thumb {
+  background: #c7b8e8;
+
+  border-radius: 10px;
+
+  border: 2px solid #f1edfa;
+}
+
+
+/* =========================
+   単語カード
+========================= */
+
+.word-item {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 15px;
+
+  margin-bottom: 12px;
+
+  background: #f8f5ff;
+
+  border: 3px solid #333;
+  border-radius: 13px;
+
+  box-shadow:
+    3px 3px 0 #333;
+}
+
+.word-item:nth-child(even) {
+  background: #f0fbff;
+}
+
+.word-item:nth-child(3n) {
+  background: #fff8e7;
+}
+
+.word-info {
+  min-width: 0;
+}
+
+.word-info strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 19px;
+
+  color: #6845a5;
+
+  word-break: break-word;
+}
+
+.word-info span {
+  display: block;
+
+  font-size: 14px;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   削除ボタン
+========================= */
+
+.delete-button {
+  flex-shrink: 0;
+
+  padding: 7px 10px;
+
+  font-family: inherit;
+
+  color: #fff;
+
+  background: #ff6b9d;
+
+  border: 2px solid #333;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  box-shadow:
+    2px 2px 0 #333;
+}
+
+.delete-button:hover {
+  background: #ff477f;
+}
+
+.delete-button:active {
+  transform: translate(2px, 2px);
+
+  box-shadow:
+    none;
+}
+
+
+/* =========================
+   クイズ開始
+========================= */
+
+.quiz-start {
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #f5f0ff
+    );
+}
+
+.quiz-start h2 {
+  color: #6845a5;
+}
+
+#start-quiz-button {
+  width: 100%;
+
+  padding: 17px;
+
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: bold;
+
+  color: #333;
+
+  background: #56d9e8;
+
+  border: 3px solid #333;
+  border-radius: 14px;
+
+  box-shadow:
+    5px 5px 0 #333;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+#start-quiz-button:hover {
+  transform: translate(-2px, -2px);
+
+  box-shadow:
+    7px 7px 0 #333;
+}
+
+
+/* =========================
+   クイズ
+========================= */
+
+.quiz-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+
+  font-size: 14px;
+}
+
+.progress-container {
+  width: 100%;
+  height: 15px;
+
+  margin-bottom: 25px;
+
+  background: #eee;
+
+  border: 2px solid #333;
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff6b9d,
+      #ffcf5c,
+      #56d9e8
+    );
+
+  transition: width 0.3s;
+}
+
+.question-area {
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+.question-area p {
+  margin-bottom: 8px;
+}
+
+#quiz-word {
+  margin: 0;
+
+  font-size: 34px;
+
+  color: #6845a5;
+}
+
+
+/* =========================
+   選択肢
+========================= */
+
+.choices {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.choice-button {
+  min-height: 70px;
+
+  padding: 12px;
+
+  font-family: inherit;
+  font-size: 16px;
+
+  background: #f8f5ff;
+
+  border: 3px solid #333;
+  border-radius: 13px;
+
+  box-shadow:
+    4px 4px 0 #333;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+.choice-button:hover {
+  background: #ffef9d;
+
+  transform: translate(-2px, -2px);
+
+  box-shadow:
+    6px 6px 0 #333;
+}
+
+.choice-button.correct {
+  background: #b8f5c8;
+}
+
+.choice-button.wrong {
+  background: #ffb7cb;
+}
+
+
+/* =========================
+   フィードバック
+========================= */
+
+#feedback {
+  min-height: 28px;
+
+  margin: 20px 0;
+
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+#next-button {
+  width: 100%;
+
+  padding: 14px;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: bold;
+
+  background: #ffcf5c;
+
+  border: 3px solid #333;
+  border-radius: 12px;
+
+  box-shadow:
+    4px 4px 0 #333;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   結果
+========================= */
+
+.result-screen {
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffdce9,
+      #e9ddff,
+      #d8faff
+    );
+}
+
+#final-score {
+  font-size: 42px;
+
+  color: #6845a5;
+}
+
+
+/* =========================
+   アニメーション
+========================= */
+
+@keyframes modalBackground {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes modalOpen {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.85)
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+  }
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 600px) {
+
+  .app {
+    width: 95%;
+
+    padding-top: 25px;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .choices {
+    grid-template-columns: 1fr;
+  }
+
+  .word-book-modal {
+    max-height: 90vh;
+  }
+
+  .word-list {
+    max-height: calc(90vh - 100px);
+
+    padding: 12px;
+  }
+
+  .word-item {
+    align-items: flex-start;
+  }
+
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WORD TRAINER</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="app">
+
+  <header>
+    <h1>WORD TRAINER</h1>
+    <p>英単語を登録して覚えよう</p>
+  </header>
+
+
+  <!-- 単語追加 -->
+  <section class="card add-section">
+
+    <h2>＋ 単語を追加</h2>
+
+    <input
+      type="text"
+      id="word-input"
+      placeholder="英単語"
+      autocomplete="off"
+    >
+
+    <input
+      type="text"
+      id="meaning-input"
+      placeholder="日本語の意味"
+      autocomplete="off"
+    >
+
+    <button id="add-button">
+      ＋ 単語を登録
+    </button>
+
+    <p id="message"></p>
+
+  </section>
+
+
+  <!-- 単語帳を開く -->
+  <section class="book-button-section">
+
+    <button id="word-book-button">
+      📖 単語帳を見る
+    </button>
+
+  </section>
+
+
+  <!-- 単語帳モーダル -->
+  <div
+    id="word-book-modal"
+    class="modal-overlay hidden"
+    aria-hidden="true"
+  >
+
+    <div
+      class="word-book-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="word-book-title"
+    >
+
+      <div class="modal-header">
+
+        <div>
+          <h2 id="word-book-title">📖 MY WORD BOOK</h2>
+          <p id="word-count">0 words</p>
+        </div>
+
+        <button
+          id="close-word-book"
+          class="close-button"
+          aria-label="単語帳を閉じる"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div id="word-list" class="word-list"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- クイズ開始 -->
+  <section class="card quiz-start">
+
+    <h2>🎮 QUIZ</h2>
+
+    <p>
+      登録した単語から<br>
+      4択クイズに挑戦！
+    </p>
+
+    <button id="start-quiz-button">
+      QUIZ START
+    </button>
+
+  </section>
+
+
+  <!-- クイズ画面 -->
+  <section id="quiz-screen" class="card quiz-screen hidden">
+
+    <div class="quiz-info">
+
+      <span id="question-number">
+        QUESTION 1 / 10
+      </span>
+
+      <span id="score">
+        SCORE 0
+      </span>
+
+    </div>
+
+
+    <div class="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+
+
+    <div class="question-area">
+
+      <p>この英単語の意味は？</p>
+
+      <h2 id="quiz-word">
+        WORD
+      </h2>
+
+    </div>
+
+
+    <div id="choices" class="choices"></div>
+
+
+    <p id="feedback"></p>
+
+
+    <button
+      id="next-button"
+      class="hidden"
+    >
+      NEXT ▶
+    </button>
+
+  </section>
+
+
+  <!-- 結果 -->
+  <section id="result-screen" class="card result-screen hidden">
+
+    <h2>🎉 QUIZ RESULT</h2>
+
+    <p id="final-score">
+      0 / 10
+    </p>
+
+    <p id="result-message"></p>
+
+    <button id="restart-button">
+      もう一度挑戦
+    </button>
+
+  </section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
